@@ -1,0 +1,55 @@
+*.iml
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
+/build
+/captures
+.externalNativeBuild
+.cxx
+local.properties
+
+# Android
+*.apk
+*.ap_
+*.dex
+*.class
+*.dex
+*.pro
+*.suo
+*.log
+*.iml
+.idea/
+.gradle/
+build/
+/local.properties
+/captures/
+*.DS_Store
+
+# Keystore files
+*.jks
+*.keystore
+
+# External native build folder generated in Android Studio 2.2 and later
+/cmake/
+
+# Google Services (e.g., google-services.json)
+google-services.json
+
+# Gradle wrapper
+/gradle/wrapper/gradle-wrapper.jar
+/gradle/wrapper/gradle-wrapper.properties
+
+# Checkstyle
+/checkstyle
+
+# Android Studio Navigation editor temp files
+.navigation/
+
+# Android Studio captures folder
+/captures/

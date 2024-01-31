@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">TP2_dev_mobile</string>
+    <string name="button_connect">CONNECTER</string>
+    <string name="text_login">Login</string>
+    <string name="text_password">Mot de passe</string>
+    <string name="text_newAccount">Nouveau compte</string>
+    <string name="text_bonjour">Bonjour, tout le monde!</string>
+</resources>
