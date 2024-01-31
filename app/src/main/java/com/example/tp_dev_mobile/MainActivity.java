@@ -3,6 +3,8 @@ package com.example.tp_dev_mobile;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -49,21 +51,47 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
+//    public void myClick(View v) {
+//        if (v.getId() == R.id.text_newAccount) {
+//            // Afficher un Toast
+//            Toast.makeText(this, "OK, vous voulez creer un nouveau compte", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        if (v.getId() == R.id.button_connect) {
+//            Toast.makeText(this, "OK, vous voulez vous connecter", Toast.LENGTH_SHORT).show();
+//            return;
+//        }
+//        if (v.getId() == R.id.toggle) {
+//            boolean isChecked = ((ToggleButton) v).isChecked();
+//            Toast.makeText(this, "OK, vous voulez switcher vers " + (isChecked ? "ON" : "OFF"), Toast.LENGTH_SHORT).show();
+//        }
+//    }
+
     public void myClick(View v) {
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+
         if (v.getId() == R.id.text_newAccount) {
-            // Afficher un Toast
-            Toast.makeText(this, "OK, vous voulez creer un nouveau compte", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (v.getId() == R.id.button_connect) {
-            Toast.makeText(this, "OK, vous voulez vous connecter", Toast.LENGTH_SHORT).show();
-            return;
-        }
-        if (v.getId() == R.id.toggle) {
+            // Dialog for "Nouveau compte" TextView
+            builder.setMessage("OK, vous voulez créer un nouveau compte")
+                    .setTitle("Nouveau compte");
+        } else if (v.getId() == R.id.button_connect) {
+            // Dialog for "button_connect" Button
+            builder.setMessage("OK, vous voulez vous connecter")
+                    .setTitle("Connection");
+        } else if (v.getId() == R.id.toggle) {
+            // Dialog for "toggle" ToggleButton
             boolean isChecked = ((ToggleButton) v).isChecked();
-            Toast.makeText(this, "OK, vous voulez switcher vers " + (isChecked ? "ON" : "OFF"), Toast.LENGTH_SHORT).show();
+            builder.setMessage("OK, vous voulez switcher vers " + (isChecked ? "ON" : "OFF"))
+                    .setTitle("Toggle State");
         }
+
+        builder.setPositiveButton("OK", null); // You can add a listener for the "OK" button if needed
+
+        // Create and show the AlertDialog
+        AlertDialog dialog = builder.create();
+        dialog.show();
     }
+
 
     @Override
     protected void onStart() {
