@@ -5,6 +5,7 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -42,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // toggle text listener
+        // toggle text listener -------------------------------------------------
         ToggleButton toggle = (ToggleButton) this.findViewById(R.id.toggle);
         toggle.setOnClickListener(new View.OnClickListener(){
             @Override
@@ -50,7 +51,14 @@ public class MainActivity extends AppCompatActivity {
                 myClick(v);
             }
         });
+//        -----------------------------------------------------------------------
+        if(this.getIntent().getExtras() != null){
+            String s = this.getIntent().getExtras().getString("madonnee");
+            TextView edit = findViewById(R.id.text_newAccount);
+            edit.setText(s);
+        }
     }
+//    ===============================================================================
 //    public void myClick(View v) {
 //        if (v.getId() == R.id.text_newAccount) {
 //            // Afficher un Toast
@@ -71,18 +79,28 @@ public class MainActivity extends AppCompatActivity {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
         if (v.getId() == R.id.text_newAccount) {
+
             // Dialog for "Nouveau compte" TextView
             builder.setMessage("OK, vous voulez créer un nouveau compte")
                     .setTitle("Nouveau compte");
+
         } else if (v.getId() == R.id.button_connect) {
+
             // Dialog for "button_connect" Button
-            builder.setMessage("OK, vous voulez vous connecter")
-                    .setTitle("Connection");
+//            builder.setMessage("OK, vous voulez vous connecter")
+//                    .setTitle("Connection");
+
+            Intent intent = new Intent(MainActivity.this, MainActivity.class);
+            intent.putExtra("madonnee", "Hello");
+            startActivity(intent);
+
         } else if (v.getId() == R.id.toggle) {
+
             // Dialog for "toggle" ToggleButton
             boolean isChecked = ((ToggleButton) v).isChecked();
             builder.setMessage("OK, vous voulez switcher vers " + (isChecked ? "ON" : "OFF"))
                     .setTitle("Toggle State");
+
         }
 
         builder.setPositiveButton("OK", null); // You can add a listener for the "OK" button if needed
