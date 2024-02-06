@@ -1,8 +1,14 @@
 package com.example.tp_dev_mobile;
 
+import androidx.activity.result.ActivityResult;
+import androidx.activity.result.ActivityResultCallback;
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContract;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.DialogFragment;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Intent;
@@ -18,6 +24,19 @@ import com.google.android.material.tabs.TabLayout;
 
 public class MainActivity extends AppCompatActivity {
 
+    // Initialiser activityResultLauncher
+    ActivityResultLauncher<Intent> activityResultLauncher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(),
+            new ActivityResultCallback<ActivityResult>() {
+                @Override
+                public void onActivityResult(ActivityResult result) {
+                    if (result.getResultCode() == 2000) {
+                        if(result.getData() != null){
+                            TextView edit = findViewById(R.id.text_newAccount);
+                            edit.setText("" + result.getData().getStringExtra("Val"));
+                        }
+                    }
+                }
+            });
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,15 +53,6 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // button connecter text listener
-        Button button_connect = (Button) this.findViewById(R.id.button_connect);
-        button_connect.setOnClickListener(new View.OnClickListener(){
-            @Override
-            public void onClick(View v){
-                myClick(v);
-            }
-        });
-
         // toggle text listener -------------------------------------------------
         ToggleButton toggle = (ToggleButton) this.findViewById(R.id.toggle);
         toggle.setOnClickListener(new View.OnClickListener(){
@@ -51,12 +61,35 @@ public class MainActivity extends AppCompatActivity {
                 myClick(v);
             }
         });
-//        -----------------------------------------------------------------------
+
+        // receive intent Val -----------------------------------------------------------------------
+        if(this.getIntent().getExtras() != null){
+            String s = this.getIntent().getExtras().getString("Val");
+            TextView edit = findViewById(R.id.text_newAccount);
+            edit.setText(s);
+        }
+
+        // receive intent Val -----------------------------------------------------------------------
         if(this.getIntent().getExtras() != null){
             String s = this.getIntent().getExtras().getString("madonnee");
             TextView edit = findViewById(R.id.text_newAccount);
             edit.setText(s);
         }
+
+        // Create intent Val -----------------------------------------------------------------------
+        Intent data = new Intent();
+        data.putExtra("Val", "Bonjour");
+        this.setResult(2000, data);
+
+        // button connecter text listener ----------------------------------------
+        Button button_connect = (Button) this.findViewById(R.id.button_connect);
+        button_connect.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View v){
+                myClick(v);
+            }
+        });
+
     }
 //    ===============================================================================
 //    public void myClick(View v) {
@@ -78,22 +111,26 @@ public class MainActivity extends AppCompatActivity {
     public void myClick(View v) {
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
 
+        // text_newAccount --------------------------------------------------------------------
         if (v.getId() == R.id.text_newAccount) {
 
             // Dialog for "Nouveau compte" TextView
             builder.setMessage("OK, vous voulez créer un nouveau compte")
                     .setTitle("Nouveau compte");
 
+        //  button_connect --------------------------------------------------------------------
         } else if (v.getId() == R.id.button_connect) {
 
             // Dialog for "button_connect" Button
-//            builder.setMessage("OK, vous voulez vous connecter")
-//                    .setTitle("Connection");
+            // builder.setMessage("OK, vous voulez vous connecter")
+            //        .setTitle("Connection");
 
             Intent intent = new Intent(MainActivity.this, MainActivity.class);
             intent.putExtra("madonnee", "Hello");
-            startActivity(intent);
+            // startActivity(intent);
+            activityResultLauncher.launch(intent);
 
+        //  toggle --------------------------------------------------------------------
         } else if (v.getId() == R.id.toggle) {
 
             // Dialog for "toggle" ToggleButton
@@ -105,7 +142,7 @@ public class MainActivity extends AppCompatActivity {
 
         builder.setPositiveButton("OK", null); // You can add a listener for the "OK" button if needed
 
-        // Create and show the AlertDialog
+        // Create and show the AlertDialog --------------------------------------
         AlertDialog dialog = builder.create();
         dialog.show();
     }
@@ -140,4 +177,15 @@ public class MainActivity extends AppCompatActivity {
         super.onDestroy();
         Log.i("CycleDeVie", "onDestroy");
     }
+
+//    ActivityResultLauncher --------------------------------------------------------------
+//    launcher = registerForActivityResult(
+//                new ActivityResultContracts.StartActivityForResult(),
+//    result -> {
+//        if(result.getResultCode() == RESULT_OK){
+//            Intent data = result.getData();
+//            TextView edit = findViewById(R.id.text_newAccount);
+//            edit.setText(data.getStringExtra("result"));
+//        }
+//    });
 }
