@@ -81,6 +81,7 @@ public class MainActivity extends AppCompatActivity {
         data.putExtra("Val", "Bonjour");
         this.setResult(2000, data);
 
+
         // button connecter text listener ----------------------------------------
         Button button_connect = (Button) this.findViewById(R.id.button_connect);
         button_connect.setOnClickListener(new View.OnClickListener(){
@@ -115,8 +116,13 @@ public class MainActivity extends AppCompatActivity {
         if (v.getId() == R.id.text_newAccount) {
 
             // Dialog for "Nouveau compte" TextView
-            builder.setMessage("OK, vous voulez créer un nouveau compte")
-                    .setTitle("Nouveau compte");
+//            builder.setMessage("OK, vous voulez créer un nouveau compte")
+//                    .setTitle("Nouveau compte");
+            // Create intent to other activity -----------------------------------------------------------------------
+            String value="Hello world";
+            Intent i = new Intent(MainActivity.this, SayHi.class);
+            i.putExtra("key",value);
+            startActivity(i);
 
         //  button_connect --------------------------------------------------------------------
         } else if (v.getId() == R.id.button_connect) {
@@ -178,14 +184,4 @@ public class MainActivity extends AppCompatActivity {
         Log.i("CycleDeVie", "onDestroy");
     }
 
-//    ActivityResultLauncher --------------------------------------------------------------
-//    launcher = registerForActivityResult(
-//                new ActivityResultContracts.StartActivityForResult(),
-//    result -> {
-//        if(result.getResultCode() == RESULT_OK){
-//            Intent data = result.getData();
-//            TextView edit = findViewById(R.id.text_newAccount);
-//            edit.setText(data.getStringExtra("result"));
-//        }
-//    });
 }
