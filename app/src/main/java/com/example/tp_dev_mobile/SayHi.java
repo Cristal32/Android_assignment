@@ -10,7 +10,7 @@ public class SayHi extends Activity {
     @Override
     protected void onCreate(Bundle savedInstance) {
         super.onCreate(savedInstance);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.say_hi);
 
         // receive intent from other activity -----------------------------------------------------------------------
         Bundle extras = getIntent().getExtras();
