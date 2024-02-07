@@ -16,7 +16,7 @@ public class SayHi extends Activity {
         Bundle extras = getIntent().getExtras();
         if (extras != null) {
             String value = extras.getString("key");
-            TextView edit = findViewById(R.id.text_bonjour);
+            TextView edit = findViewById(R.id.text_login);
             edit.setText(value);
         }
     }

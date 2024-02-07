@@ -16,6 +16,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.ToggleButton;
@@ -131,10 +132,18 @@ public class MainActivity extends AppCompatActivity {
             // builder.setMessage("OK, vous voulez vous connecter")
             //        .setTitle("Connection");
 
+            // Launcher ----------------------------------------
             Intent intent = new Intent(MainActivity.this, MainActivity.class);
             intent.putExtra("madonnee", "Hello");
             // startActivity(intent);
             activityResultLauncher.launch(intent);
+
+            //intent to new activity ------------------------------
+            EditText editText = findViewById(R.id.login_input);
+            String inputValue = editText.getText().toString();
+            Intent i = new Intent(MainActivity.this, SayHi.class);
+            i.putExtra("key",inputValue);
+            startActivity(i);
 
         //  toggle --------------------------------------------------------------------
         } else if (v.getId() == R.id.toggle) {
