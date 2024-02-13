@@ -1,9 +1,11 @@
 <resources>
     <string name="app_name">TP2_dev_mobile</string>
-    <string name="button_connect">CONNECTER</string>
+    <string name="button_connect">Se connecter</string>
     <string name="text_login">Login</string>
     <string name="text_password">Mot de passe</string>
-    <string name="text_newAccount">Nouveau compte</string>
-    <string name="text_bonjour">Bonjour, tout le monde!</string>
+    <string name="text_newAccount">Creer un nouveau compte</string>
+    <string name="text_bienvenu">Bienvenu!</string>
     <string name="text_connected">Vous ete connectes, bienvenu: </string>
+    <string name="text_name">Ecole Nationale Superieure d\'Informatique et d\'Analyse des Systemes </string>
+    <string name="text_label">ENSIAS </string>
 </resources>

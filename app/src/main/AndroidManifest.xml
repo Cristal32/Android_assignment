@@ -23,7 +23,7 @@
         </activity>
 <!--        say hi activity-->
         <activity
-            android:name=".SayHi"
+            android:name=".Mylist"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
