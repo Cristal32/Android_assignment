@@ -21,9 +21,31 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-<!--        say hi activity-->
+        <!-- list activity-->
         <activity
-            android:name=".Mylist"
+            android:name=".MyListActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <!-- create account activity-->
+        <activity
+            android:name=".CreateCompteActivity"
+            android:exported="true">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="text/plain" />
+            </intent-filter>
+        </activity>
+
+        <!-- add etablissement activity-->
+        <activity
+            android:name=".AddEtablissmentActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.SEND" />
